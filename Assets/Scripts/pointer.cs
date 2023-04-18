@@ -18,7 +18,7 @@ public class pointer : MonoBehaviour
         
     }
     public IEnumerator run() {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         Destroy(gameObject);
 
     }
