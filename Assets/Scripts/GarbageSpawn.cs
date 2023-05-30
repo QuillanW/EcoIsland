@@ -7,10 +7,13 @@ public class GarbageSpawn : MonoBehaviour
 {
     public Terrain terrain;
 
-    public float spawnInterval = 1;
-    public int maxSpawned = 25;
+    [HideInInspector]
+    public float minSpawnInterval = 1;
+    [HideInInspector]
+    public float maxSpawnInterval = 1;
+    int maxSpawned = 25;
 
-    public List<GameObject> garbageModels = new();
+    [SerializeField] List<GameObject> garbageModels = new();
 
     private void OnEnable()
     {
@@ -23,7 +26,7 @@ public class GarbageSpawn : MonoBehaviour
         {
             SpawnGarbage();
         }
-        yield return new WaitForSeconds(spawnInterval);
+        yield return new WaitForSeconds(Random.Range(minSpawnInterval, maxSpawnInterval));
         StartCoroutine(SpawnEveryInterval());
     }
 
