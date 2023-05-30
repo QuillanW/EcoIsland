@@ -43,6 +43,7 @@ public class GarbageSpawn : MonoBehaviour
         GameObject garbageModel = garbageModels[Random.Range(0, garbageModels.Count)];
 
         //Instatiate the model
-        Instantiate(garbageModel, spawnPosition, spawnRotation, transform);
+        GameObject newGarbage =  Instantiate(garbageModel, spawnPosition, spawnRotation, transform);
+        newGarbage.GetComponent<Collectable>().terrain = terrain;
     }
 }
