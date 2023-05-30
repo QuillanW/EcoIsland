@@ -28,8 +28,7 @@ public class PlayerMove : MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            print(hit.point.y);
-            if (IsPointerOverUIObject() || hit.point.y < 1.85f) { return; }
+            if (IsPointerOverUIObject()) { return; }
             _agent.SetDestination(hit.point);
             Instantiate(point, hit.point, Quaternion.identity);
         }

@@ -24,7 +24,7 @@ public class CameraControl : MonoBehaviour
         if (inControl && !animate)
         {
             //Camera zoom
-            scrollPosition += Input.GetAxis("Scroll") * Time.deltaTime * 2500 * cameraSpeed;
+            scrollPosition += Input.GetAxis("Scroll") * Time.deltaTime * 5000 * cameraSpeed;
             scrollPosition = Mathf.Clamp(scrollPosition,-80,-10);
             playerCamera.transform.localPosition = new Vector3(0, 0, scrollPosition);
         }
@@ -34,7 +34,7 @@ public class CameraControl : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
 
-            wantedRotation += new Vector3(-Input.GetAxis("Mouse Y") * 500 * Time.deltaTime * cameraSpeed, Input.GetAxis("Mouse X") * 500 * Time.deltaTime * cameraSpeed, 0);
+            wantedRotation += new Vector3(-Input.GetAxis("Mouse Y") * 1000 * Time.deltaTime * cameraSpeed, Input.GetAxis("Mouse X") * 500 * Time.deltaTime * cameraSpeed, 0);
         } 
         else
         {
