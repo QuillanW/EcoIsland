@@ -21,7 +21,7 @@ public class ShopMenu : MonoBehaviour
         transform.position = new Vector3(25, -500, 0);
 
         int b = 0;
-        int v = 0;
+        int c = 0;
         int g = 0;
         foreach (Item item in items)
         {
@@ -29,11 +29,18 @@ public class ShopMenu : MonoBehaviour
 
             switch(item.category)
             {
-                case ShopCategories.buildings: 
-                    itemsParent = buildingsItems; 
+                case ShopCategories.buildings:
+                    InstantiateItemUI(b, item, buildingsItems);
+                    b++;
                     break;
-                case ShopCategories.collectors: itemsParent = collectorsItems; break;
-                case ShopCategories.greenery: itemsParent = greeneryItems; break;
+                case ShopCategories.collectors:
+                    InstantiateItemUI(c, item, collectorsItems);
+                    c++;
+                    break;
+                case ShopCategories.greenery:
+                    InstantiateItemUI(g, item, greeneryItems);
+                    g++;
+                    break;
             }
         }
     }
@@ -43,7 +50,6 @@ public class ShopMenu : MonoBehaviour
         GameObject newItem = Instantiate(ShopItemUIPrefab, parent);
         newItem.GetComponent<ShopItem>().Setup(item);
         newItem.transform.localPosition = new Vector2(0, index * -100);
-        index++;
     }
 
     public void ToggleMenu()
