@@ -7,9 +7,13 @@ public class BuildMode : MonoBehaviour
     public bool buildActive = false;
     
     private Camera _camera;
-    // Start is called before the first frame update
+
+    public static BuildMode instance;
+
     void Start()
     {
+        instance = this;
+
         _camera = Camera.main;
         if (_camera == null)
         {
@@ -20,13 +24,7 @@ public class BuildMode : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-
-    }
-    void EnterBuildMode(Item item)
+    public void EnterBuildMode(Item item)
     {
         
         if(buildActive == true)
