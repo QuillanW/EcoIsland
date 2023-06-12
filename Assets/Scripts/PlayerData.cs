@@ -8,11 +8,12 @@ public class PlayerData : MonoBehaviour
     public int score = 0;
     public int maxScore = 1000;
 
-    UIManager UImanager;
+
+    public static PlayerData instance;
 
     private void Start()
     {
-        UImanager = GetComponent<UIManager>();
+        instance = this;
     }
 
     public void UpdateData(int Coins, int Score)
@@ -20,6 +21,6 @@ public class PlayerData : MonoBehaviour
         coins += Coins;
         score += Score;
 
-        UImanager.UpdateUI();
+        UIManager.instance.UpdateUI();
     }
 }

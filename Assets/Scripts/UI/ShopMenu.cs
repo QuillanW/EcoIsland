@@ -16,13 +16,18 @@ public class ShopMenu : MonoBehaviour
     public GameObject ShopItemUIPrefab;
     public List<Item> items = new();
 
+    public static ShopMenu instance;
+
     private void Start()
     {
+        instance = this;
+
         transform.position = new Vector3(25, -500, 0);
 
         int b = 0;
         int c = 0;
         int g = 0;
+
         foreach (Item item in items)
         {
             RectTransform itemsParent = buildingsItems;
@@ -56,13 +61,24 @@ public class ShopMenu : MonoBehaviour
     {
         if (menuActive)
         {
-            transform.position = new Vector3(25, -500, 0);
+            transform.localPosition = new Vector3(20, -500, 0);
         }
         else
         {
-            transform.position = new Vector3(25, 25, 0);
+            transform.localPosition = new Vector3(25, 25, 0);
         }
         menuActive = !menuActive;
+    }
+
+    public void MenuVisibility(bool visible)
+    {
+        if (visible)
+        {
+            transform.localPosition = transform.localPosition = new Vector3(20, -500, 0);
+            return;
+        }
+        transform.localPosition = new Vector3(-1000, -1000);
+
     }
 }
 

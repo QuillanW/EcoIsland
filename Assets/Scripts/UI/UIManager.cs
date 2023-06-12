@@ -11,8 +11,11 @@ public class UIManager : MonoBehaviour
 
     PlayerData playerData;
 
+    public static UIManager instance;
+
     private void Start()
     {
+        instance = this;
         playerData = GetComponent<PlayerData>();
         UpdateUI();
     }

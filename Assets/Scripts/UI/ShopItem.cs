@@ -2,17 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShopItem : MonoBehaviour
 {
-    public TextMeshProUGUI name;
-    public TextMeshProUGUI price;
-    public TextMeshProUGUI level;
+    public TextMeshProUGUI nameLabel;
+    public TextMeshProUGUI priceLabel;
+    public TextMeshProUGUI levelLabel;
+    public Button interactionButton;
 
     public void Setup(Item item)
     {
-        name.text = item.name;
-        price.text = "Cost: " + item.price.ToString();
-        level.text = "Unlocked at: " + item.level.ToString();
+        nameLabel.text = item.name;
+        priceLabel.text = "Cost: " + item.price.ToString();
+        levelLabel.text = "Unlocked at: " + item.level.ToString();
+        interactionButton.onClick.AddListener(delegate { print("Enter Buildmode"); });
     }
 }
