@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.EventSystems;
 public class BuildMode : MonoBehaviour
 {
     public bool buildActive = false;
     
     private Camera _camera;
-
+    public GameObject stopbutton;
     public static BuildMode instance;
 
     void Start()
@@ -21,6 +21,7 @@ public class BuildMode : MonoBehaviour
         }
         
         buildActive = true;
+        stopbutton.SetActive(false);
         
     }
 
@@ -29,6 +30,7 @@ public class BuildMode : MonoBehaviour
         
         if(buildActive == true)
         {
+            stopbutton.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
 
@@ -50,7 +52,7 @@ public class BuildMode : MonoBehaviour
         if(buildActive == true)
         {
             buildActive = false;
-
+            stopbutton.SetActive(false);
         }
         else
         {
