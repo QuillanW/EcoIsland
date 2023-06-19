@@ -23,21 +23,27 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         if (!Input.GetMouseButtonDown(0)) return;
+        if (BuildMode.instance.currentItem != null) return;
 
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hit))
         {
-            if (IsPointerOverUIObject()) { return; }
+            if (UICheck.IsPointerOverUIObject()) { return; }
             _agent.SetDestination(hit.point);
             Instantiate(point, hit.point, Quaternion.identity);
         }
     }
+}
 
-    private bool IsPointerOverUIObject()
+public class UICheck
+{
+    public static bool IsPointerOverUIObject()
     {
-        PointerEventData eventDataCurrentPosition = new PointerEventData(EventSystem.current);
-        eventDataCurrentPosition.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
+        PointerEventData eventDataCurrentPosition = new(EventSystem.current)
+        {
+            position = new Vector2(Input.mousePosition.x, Input.mousePosition.y)
+        };
 
         List<RaycastResult> results = new();
         EventSystem.current.RaycastAll(eventDataCurrentPosition, results);

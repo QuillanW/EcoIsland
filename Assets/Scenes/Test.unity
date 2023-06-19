@@ -1108,7 +1108,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 21041a80df0054695b3b38fde229b871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildActive: 0
+  stopbutton: {fileID: 957885383}
 --- !u!1 &586366069
 GameObject:
   m_ObjectHideFlags: 0
@@ -2475,17 +2475,17 @@ MonoBehaviour:
   - name: Test1
     price: 10
     level: 5
-    prefab: {fileID: 2611938226927151748, guid: 5894caacefdf99845a8b3b2c336c9f2f, type: 3}
+    prefab: {fileID: 3801640433271555929, guid: 8110c7c620d537c4c8ed8357e9b5dc8b, type: 3}
     category: 0
   - name: Test2
     price: 10
     level: 5
-    prefab: {fileID: 2396460926754671395, guid: e6fa9e91e2ca5984eb9abc699d0e3478, type: 3}
+    prefab: {fileID: 3801640433271555929, guid: 8110c7c620d537c4c8ed8357e9b5dc8b, type: 3}
     category: 1
   - name: Test3
     price: 10
     level: 5
-    prefab: {fileID: 1226426424540985796, guid: 7ba4660e1ef496b4495259948c5caf59, type: 3}
+    prefab: {fileID: 3801640433271555929, guid: 8110c7c620d537c4c8ed8357e9b5dc8b, type: 3}
     category: 0
 --- !u!1 &1410226136
 GameObject:

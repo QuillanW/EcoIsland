@@ -4,11 +4,11 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 public class BuildMode : MonoBehaviour
 {
-    public bool buildActive = false;
-    
     private Camera _camera;
     public GameObject stopbutton;
     public static BuildMode instance;
+
+    public Item currentItem = null;
 
     void Start()
     {
@@ -19,44 +19,52 @@ public class BuildMode : MonoBehaviour
         {
             Debug.LogError("The Camera is null on the player controller.");
         }
-        
-        buildActive = true;
+
         stopbutton.SetActive(false);
-        
+
     }
 
+    //Wanneer een item is gekozen, zet het gekozen item en zet de 'stop buildmode' button actief
     public void EnterBuildMode(Item item)
     {
-        
-        if(buildActive == true)
+
+        Debug.Log("Build Mode Actief");
+        currentItem = item;
+        stopbutton.SetActive(true);
+
+    }
+
+    //Wanneer een item is gekozen, check of de muisknop word ingedrukt
+    private void Update()
+    {
+        if (Input.GetMouseButtonDown(0) && currentItem != null && !UICheck.IsPointerOverUIObject())
         {
-            stopbutton.SetActive(true);
-            if (Input.GetMouseButtonDown(0))
+            //Als de muisknop is ingedrukt, check hvl coins de player heeft en of de player dus het item kan betalen
+            if (currentItem.price <= PlayerData.instance.coins)
             {
-
-                var ray = _camera.ScreenPointToRay(Input.mousePosition);
-
-                if (Physics.Raycast(ray, out RaycastHit hit))
-                {
-
-
-                    Instantiate(item.prefab, hit.point, Quaternion.identity);
-                }
-
-                Debug.Log("Build Mode Actief");
+                PlayerData.instance.coins -= currentItem.price;
             }
+            else
+            {
+                Debug.Log("Niet genoeg coins");
+                return;
+            }
+
+            //Plaats het item waar de player klikt
+            var ray = _camera.ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out RaycastHit hit))
+            {
+                Instantiate(currentItem.prefab, hit.point, Quaternion.identity);
+            }
+
         }
     }
+
+    //Wanneer de buildmode uit gaat, zet het huidige item naar null en haal de stopbutton weg
     public void StopBuildMode()
     {
-        if(buildActive == true)
-        {
-            buildActive = false;
-            stopbutton.SetActive(false);
-        }
-        else
-        {
-            Debug.Log("Already False");
-        }
+        currentItem = null;
+        stopbutton.SetActive(false);
     }
 }
