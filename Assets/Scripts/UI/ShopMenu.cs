@@ -106,4 +106,9 @@ public class Item
         this.prefab = prefab;
         this.category = category;
     }
+
+    public Item()
+    {
+        name = "";
+    }
 }

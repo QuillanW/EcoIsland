@@ -2815,7 +2815,7 @@ MonoBehaviour:
   ShopItemUIPrefab: {fileID: 9039437317242190264, guid: 3574cb6faf147f5428d8e43b43c9617b, type: 3}
   items:
   - name: Test1
-    price: 10
+    price: 5
     level: 5
     prefab: {fileID: 3801640433271555929, guid: 8110c7c620d537c4c8ed8357e9b5dc8b, type: 3}
     category: 0

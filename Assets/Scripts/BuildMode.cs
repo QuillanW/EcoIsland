@@ -8,7 +8,7 @@ public class BuildMode : MonoBehaviour
     public GameObject stopbutton;
     public static BuildMode instance;
 
-    public Item currentItem = null;
+    public Item currentItem = new();
 
     void Start()
     {
@@ -37,12 +37,13 @@ public class BuildMode : MonoBehaviour
     //Wanneer een item is gekozen, check of de muisknop word ingedrukt
     private void Update()
     {
-        if (Input.GetMouseButtonDown(0) && currentItem != null && !UICheck.IsPointerOverUIObject())
+        if (Input.GetMouseButtonDown(0) && currentItem.name != "" && !UICheck.IsPointerOverUIObject())
         {
             //Als de muisknop is ingedrukt, check hvl coins de player heeft en of de player dus het item kan betalen
             if (currentItem.price <= PlayerData.instance.coins)
             {
                 PlayerData.instance.coins -= currentItem.price;
+                UIManager.instance.UpdateUI();
             }
             else
             {
@@ -64,7 +65,7 @@ public class BuildMode : MonoBehaviour
     //Wanneer de buildmode uit gaat, zet het huidige item naar null en haal de stopbutton weg
     public void StopBuildMode()
     {
-        currentItem = null;
+        currentItem = new();
         stopbutton.SetActive(false);
     }
 }

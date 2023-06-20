@@ -23,7 +23,7 @@ public class PlayerMove : MonoBehaviour
     private void Update()
     {
         if (!Input.GetMouseButtonDown(0)) return;
-        if (BuildMode.instance.currentItem != null) return;
+        if (BuildMode.instance.currentItem.name != "") return;
 
         var ray = _camera.ScreenPointToRay(Input.mousePosition);
 
